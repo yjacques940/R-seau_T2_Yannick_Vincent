@@ -31,6 +31,7 @@ ip access-list extended 107 //Vendeurs
 permit tcp any any eq 80
 permit tcp any 192.168.30.3 eq 110
 permit tcp any 192.168.30.3 eq 25
+exit
 
 int fa0/1
 no shut

@@ -1,11 +1,48 @@
 enable
-conf t
+conf t¸
+ip access-list extended 101 
+permit tcp any any established
+
+ip access-list extended 104 
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+permit tcp any 192.168.30.4 eq 2840
+
+ip access-list extended 105 
+permit tcp any 192.168.30.4 eq 2840
+
+ip access-list extended 106 
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+
+ip access-list extended 107 
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 255.255.255.0 eq 110
+permit tcp any 192.168.30.3 255.255.255.0 eq 25
 int fa0/0
 no shut
 ip add 192.168.20.1 255.255.255.0
 interface fa0/1
 no shutdown
 ip add 172.17.2.5 255.255.255.0
+interface fa0/0.1
+Encapsulation dot1q 10
+ip access-group 101 out
+interface fa0/0.2
+Encapsulation  dot1q 60
+ip access-group 104 in
+interface fa0/0.3
+Encapsulation  dot1q 40
+ip access-group 105 in
+interface fa0/0.4
+Encapsulation  dot1q 80
+ip access-group 107 in
+interface fa0/0.5
+Encapsulation  dot1q 70
+ip access-group 106 in
+
 interface tunnel 0
 no shutdown
 ip add 192.168.10.2 255.255.255.0
