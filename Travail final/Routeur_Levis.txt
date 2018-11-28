@@ -1,4 +1,35 @@
 enable
+--Access-list----
+ip access-list extended 101 //technicien
+permit tcp any any established
+
+ip access-list extended 102 //AP
+permit tcp any any eq 80
+
+ip access-list extended 103 //AP Employes
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+
+ip access-list extended 104 //Directeurs
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+permit tcp any 192.168.30.4 eq 2840
+
+ip access-list extended 105 //Peinture + Service
+permit tcp any 192.168.30.4 eq 2840
+
+ip access-list extended 106 //Receptionniste
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+
+ip access-list extended 107 //Vendeurs
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+-----------------
 conf t
 int fa0/1
 no shut
