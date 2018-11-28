@@ -6,6 +6,7 @@ enable
       name AP
     vlan 30
       name APEmployes
+  exit
   int fa0/1
     no shut
     switchport mode access
@@ -13,13 +14,15 @@ enable
   int range fa0/2-fa0/4
      no shut
      switchport mode trunk
-     swichport trunk allowed vlan all
+     switchport trunk allowed vlan all
   int fa0/5
      no shut
      switchport mode access
     switchport access vlan 30
-  int fa0/6-fa0/8
+  int range fa0/6-fa0/8
       no shut
+     switchport mode trunk
+     switchport trunk allowed vlan all
   int fa0/9
       no shut
      switchport mode access
@@ -27,11 +30,13 @@ enable
   int fa0/10
      no shut
      switchport mode trunk
-     swichport trunk allowed vlan all
- int fa0/11-fa0/24
+     switchport trunk allowed vlan all
+ int range fa0/11-fa0/24
    shutdown
-
   exit  
+exit
+copy startup-config running-config
+
 exit
 
 tech 09

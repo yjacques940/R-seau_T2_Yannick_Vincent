@@ -1,0 +1,20 @@
+enable
+  conf t¸
+    vlan 40
+      name Service
+    exit
+  int range fa0/1-fa0/2
+    no shut
+    switchport mode trunk
+    switchport trunk allowed vlan all
+ int fa0/3
+   no shut
+   switchport mode access
+   switchport access vlan 40
+ int range fa0/4-fa0/24
+   shutdown
+  exit  
+exit
+copy startup-config running-config
+
+exit
