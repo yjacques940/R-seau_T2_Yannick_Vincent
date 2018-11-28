@@ -1,0 +1,42 @@
+enable
+  conf t¸
+    vlan 10
+      name Tech
+    vlan 20
+      name AP
+    vlan 30
+      name APEmployes
+  int fa0/1
+    no shut
+    switchport mode access
+    switchport access vlan 20
+  int range fa0/2-fa0/4
+     no shut
+     switchport mode trunk
+     swichport trunk allowed vlan all
+  int fa0/5
+     no shut
+     switchport mode access
+    switchport access vlan 30
+  int fa0/6-fa0/8
+      no shut
+  int fa0/9
+      no shut
+     switchport mode access
+    switchport access vlan 10
+  int fa0/10
+     no shut
+     switchport mode trunk
+     swichport trunk allowed vlan all
+ int fa0/11-fa0/24
+   shutdown
+
+  exit  
+exit
+
+tech 09
+AP 01
+APE 05
+02 03 04 trunk
+
+10 routeur

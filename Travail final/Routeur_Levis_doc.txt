@@ -1,0 +1,85 @@
+enable
+
+-----------------
+conf t
+ip access-list extended 101 //technicien
+permit tcp any any established
+
+ip access-list extended 102 //AP
+permit tcp any any eq 80
+
+ip access-list extended 103 //AP Employes
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+
+ip access-list extended 104 //Directeurs
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+permit tcp any 192.168.30.4 eq 2840
+
+ip access-list extended 105 //Peinture + Service
+permit tcp any 192.168.30.4 eq 2840
+
+ip access-list extended 106 //Receptionniste
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+
+ip access-list extended 107 //Vendeurs
+permit tcp any any eq 80
+permit tcp any 192.168.30.3 eq 110
+permit tcp any 192.168.30.3 eq 25
+
+int fa0/1
+no shut
+ip add 192.168.30.1 255.255.255.0
+interface fa0/0
+no shutdown
+ip add 172.17.2.4 255.255.255.0
+interface fa0/1.1
+Encapsulation dot1q 10
+ip access-group 101 in
+interface fa0/1.2
+Encapsulation  dot1q 20
+ip access-group 102 in
+interface fa0/1.3
+Encapsulation  dot1q 30
+ip access-group 103 in
+interface fa0/1.4
+Encapsulation  dot1q 40
+ip access-group 104 in
+interface fa0/1.5
+Encapsulation  dot1q 50
+ip access-group 105 in
+interface fa0/1.6
+Encapsulation  dot1q 60
+ip access-group 105 in
+interface fa0/1.7
+Encapsulation  dot1q 70
+ip access-group 106 in
+interface fa0/1.8
+Encapsulation  dot1q 80
+ip access-group 107 in
+interface tunnel 0
+no shutdown
+ip add 192.168.10.1 255.255.255.0
+tunnel destination 172.24.2.5
+tunnel source fa0/1
+tunnel mode gre ip
+exit
+no ip dhcp pool Levis
+    ip dhcp pool Levis
+    no default router
+    no dns-server
+    default-router 192.168.30.1
+    network 192.168.30.0 255.255.255.0
+    ip dhcp excluded-address 192.168.30.2 192.168.30.4
+ip route 192.168.20.0 255.255.255.0 192.168.10.2
+ip routing 
+exit
+
+exit
+
+
