@@ -1,9 +1,22 @@
 enable
-  conf t¸
+  conf t
+    vlan 10
+      name Tech
+    vlan 20
+      name AP
+    vlan 30
+      name APEmployes
+    vlan 40
+      name Service
     vlan 50
       name Peinture
-    vlan 60
+    vlan 60 
       name Directeurs
+    vlan 70
+      name Receptionniste
+    vlan 80
+      name Vendeurs
+exit
     exit
   int fa0/1
     no shut

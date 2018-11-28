@@ -1,11 +1,21 @@
 enable
-  conf t¸
+  conf t
     vlan 10
       name Tech
     vlan 20
       name AP
     vlan 30
       name APEmployes
+    vlan 40
+      name Service
+    vlan 50
+      name Peinture
+    vlan 60 
+      name Directeurs
+    vlan 70
+      name Receptionniste
+    vlan 80
+      name Vendeurs
   exit
   int fa0/1
     no shut
@@ -21,8 +31,6 @@ enable
     switchport access vlan 30
   int range fa0/6-fa0/8
       no shut
-     switchport mode trunk
-     switchport trunk allowed vlan all
   int fa0/9
       no shut
      switchport mode access
@@ -38,10 +46,3 @@ exit
 copy startup-config running-config
 
 exit
-
-tech 09
-AP 01
-APE 05
-02 03 04 trunk
-
-10 routeur
