@@ -1,30 +1,37 @@
 enable
 conf t
+no ip access-list extended 101
 ip access-list extended 101 
 permit tcp any any established
 permit udp any any eq 67
+no ip access-list extended 102
 ip access-list extended 102 
 permit udp any any eq 67
 permit tcp any any eq 80
+no ip access-list 103
 ip access-list extended 103 
 permit udp any any eq 67
 permit tcp any any eq 80
 permit tcp any 192.168.30.3 255.255.255.0 eq 110
 permit tcp any 192.168.30.3 255.255.255.0 eq 25
+no ip access-list extended 104
 ip access-list extended 104
 permit udp any any eq 67 
 permit tcp any any eq 80
 permit tcp any 192.168.30.3 255.255.255.0 eq 110
 permit tcp any 192.168.30.3 255.255.255.0  eq 25
 permit tcp any 192.168.30.4 255.255.255.0  eq 2840
+no ip access-list extended 105
 ip access-list extended 105
 permit udp any any eq 67 
 permit tcp any 192.168.30.4 255.255.255.0  eq 2840
+no ip access-list extended 106
 ip access-list extended 106
 permit udp any any eq 67 
 permit tcp any any eq 80
 permit tcp any 192.168.30.3 255.255.255.0  eq 110
 permit tcp any 192.168.30.3 255.255.255.0  eq 25
+no ip access-list extended 107
 ip access-list extended 107
 permit udp any any eq 67 
 permit tcp any any eq 80
@@ -130,6 +137,7 @@ ip route 192.168.21.0 255.255.255.0 192.168.10.2
 ip route 192.168.22.0 255.255.255.0 192.168.10.2
 ip routing 
 exit
+copy running-config startup-config
 
 exit
 
