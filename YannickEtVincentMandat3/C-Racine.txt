@@ -1,0 +1,96 @@
+enable
+
+conf t
+
+vlan 10
+     
+name Tech
+    
+vlan 20
+      
+name AP
+    
+vlan 30
+     
+ name APEmployes
+    
+vlan 40
+      
+name Service
+    
+vlan 50
+     
+ name Peinture
+    
+vlan 60 
+      
+name Directeurs
+    
+vlan 70
+      
+name Receptionniste
+    
+vlan 80
+     
+ name Vendeurs
+
+vlan 90
+ name Pieces  
+exit
+  
+int fa0/1
+    
+no shut
+   
+ switchport mode access
+    
+switchport access vlan 20
+  
+int range fa0/2-fa0/4
+    
+ no shut
+     
+switchport mode trunk
+     
+switchport trunk allowed vlan all
+  
+int fa0/5
+     
+no shut
+     
+switchport mode access
+   
+ switchport access vlan 30
+  
+int range fa0/6-fa0/8
+     
+ no shut
+  int fa0/9
+      
+no shut
+     
+switchport mode access
+    
+switchport access vlan 10
+ 
+ int fa0/10
+    
+ no shut
+     
+switchport mode trunk
+     
+switchport trunk allowed vlan all
+ 
+int range fa0/11-fa0/24
+   
+shutdown
+  
+exit  
+
+exit
+
+copy startup-config running-config
+
+
+
+exit

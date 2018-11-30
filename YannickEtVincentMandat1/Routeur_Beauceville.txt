@@ -1,0 +1,29 @@
+enable
+conf t
+
+int fa0/0
+ip add 192.168.20.1
+no shut
+interface fa0/1
+no shutdown
+ip add 172.17.2.5 255.255.255.0
+interface tunnel 0
+no shutdown
+ip add 192.168.10.2 255.255.255.0
+tunnel destination 172.24.2.4
+tunnel source fa0/1
+tunnel mode gre ip
+exit
+no ip dhcp pool Beauceville1
+    ip dhcp pool Beauceville1
+    no default router
+    no dns-server
+    default-router 192.168.20.1
+    network 192.168.20.0 255.255.255.0
+
+ip route 192.168.30.0 255.255.255.0 192.168.10.1
+ip routing 
+exit
+copy running-config startup-config
+
+exit
